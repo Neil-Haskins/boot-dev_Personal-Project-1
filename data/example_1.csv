@@ -1,6 +1,7 @@
-City,Country,Region,Climate,
-,,,Record high,Record low
-Xanadu,Blarg,Delta quadrant,55,-37
-ShiKahr,Vulcan,Alpha quadrant,43,-53
-Qo'noS,Klingon Empire,Beta quadrant,32,-22
-"Qwat,latl",Somewhere,Who knows,22,0
+City,Country,Region,Climate,,,,,,Demographics,
+,,,Jan,,Feb,,Mar,,Population,Friendliness
+,,,Record high,Record low,Record high,Record low,Record high,Record low,,
+Xanadu,Blarg,Delta quadrant,55,-37,-129,-221,-313,-405,187646,200
+ShiKahr,Vulcan,Alpha quadrant,43,-53,-149,-245,-341,-437,21413424,50
+Qo'noS,Klingon Empire,Beta quadrant,32,-22,-76,-130,-184,-238,123414,87
+"Qwat,latl",Somewhere,Who knows,22,0,-22,-44,-66,-88,3,7
