@@ -3,8 +3,15 @@ def pack(rows):
 
 def _assemble_cities_dict(rows):
     headings = _get_headings(rows)
-    print(headings[0])
-    print(headings[1])
+    body = rows[len(headings[0]):]
+    
+    print('\nbody:')
+    print('[')
+    for row in body:
+        print(f'    {row}')
+    print(']')
+
+
     
     return None
 
@@ -15,15 +22,16 @@ def _get_headings(rows):
             break
         heading_rows.append(rows[i])
 
-    heading_lengths = []
-    for row in heading_rows:
-        new_row = []
-        for cell in row:
-            if cell == '' and len(new_row) != 0:
-                new_row[-1] += 1
-            else:
-                new_row.append(1)
-        heading_lengths.append(new_row)
+    heading_lists = []
+    for i in range(len(heading_rows[0])):
+        heading_lists.append([])
+        current = ''
+        for j in range(len(heading_rows)):
+            if heading_rows[j][i] != '':
+                current = heading_rows[j][i]
+            elif heading_rows[j][i] == '' and current == '':
+                current = heading_rows[j][i - 1]
+            heading_lists[i].append(current)
 
-    return (heading_rows, heading_lengths)
+    return heading_lists
             

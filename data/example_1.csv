@@ -1,5 +1,6 @@
-City,Country,Region,Climate,Record high,Record low
-Xanadu,Blarg,Delta quadrant,,55,-37
-ShiKahr,Vulcan,Alpha quadrant,,43,-53
-Qo'noS,Klingon Empire,Beta quadrant,,32,-22
-"Qwat,latl",Somewhere,Who knows,,22,0
+City,Country,Region,Climate,
+,,,Record high,Record low
+Xanadu,Blarg,Delta quadrant,55,-37
+ShiKahr,Vulcan,Alpha quadrant,43,-53
+Qo'noS,Klingon Empire,Beta quadrant,32,-22
+"Qwat,latl",Somewhere,Who knows,22,0
