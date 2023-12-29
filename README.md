@@ -9,24 +9,7 @@ Consider:
 
 Should probably use Python and Tkinter, so as to match what's been done in the previous courses.
 
-## Ideas
-
-### Bill payment simulator (a game):
-
-**Description**
-
-- Have an account balance and "bills" and "income" which come in from time to time.
-- Select payee from a dropdown, enter payment amount in a text field, and click send.
-- Accout balance updates.
-- Lose if bills go unpaid for too long.
-- Speed up slowly until player can't keep up.
-
-**Evaluation**
-
-- Maybe not interesting
-- Definitely not useful
-
-### Something to choose cities based on climate
+## Something to choose cities based on climate
 
 **Description**
 
@@ -47,3 +30,12 @@ Should probably use Python and Tkinter, so as to match what's been done in the p
 - Not genuinely useful, but pseudo-useful
 - Does use data
 - Probably need to compile data manually (likely from Wikipedia)
+
+### Plan
+
+1. Set up parsing from a CSV, and print info to command line.
+2. Set up GUI
+
+
+
+
