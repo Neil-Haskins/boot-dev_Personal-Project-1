@@ -8,11 +8,11 @@ def main():
     cities_dict = packer.pack(rows)
 
     # print(cities_dict)
-    matches = filters.get_all_matching(cities_dict, ['Record high'])
-    _nicely_print_list(matches)
+    matches = filters.get_all_matching_path_as_tuples(cities_dict, ['Record high'])
+    # _nicely_print_list(matches)
 
     max_temps = filters.get_max_temp(cities_dict)
-    _nicely_print_list(max_temps)
+    # _nicely_print_list(max_temps)
 
 
 def _nicely_print_list(my_list):# just for dev
