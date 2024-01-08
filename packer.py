@@ -1,10 +1,10 @@
 def pack(rows):
     return _assemble_cities_dict(rows)
 
+
 def _assemble_cities_dict(rows):
     headings = _get_headings(rows)
-    heading_rows_num = max(len(lst) for lst in headings)
-    city_list = rows[heading_rows_num:]
+    city_list = rows[max(len(lst) for lst in headings):]
 
     tuples = []
     for city in city_list:
@@ -17,11 +17,14 @@ def _assemble_cities_dict(rows):
         main_dict[title] = city
     return main_dict
 
+
 def _city_dict(city):
     dict = {}
     sub_items = []
     for (val, lst) in city:
         if len(lst) == 1:
+            if is_number(val):
+                val = float(val)
             dict[lst[0]] = val
         else:
             title = lst[0]
@@ -57,4 +60,20 @@ def _get_headings(rows):
                 col[j] = heading_columns[target][j]
 
     return heading_columns
-            
+
+
+def _is_number(str):
+    digits = list('0123456789')
+    dot = '.'
+    if len(set(digits).intersection(str)) == 0:
+        return False
+
+    for i in range(len(str)):
+        if i == 0 and str[i] == '-':
+            continue
+        elif str[i] in dot:
+            dot = ''
+            continue
+        elif not str[i] in digits:
+            return False
+    return True
