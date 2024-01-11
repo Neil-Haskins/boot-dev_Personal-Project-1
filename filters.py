@@ -28,11 +28,30 @@ def get_min_temps(c_dict):
     nums = [min(_get_matching_fields(x[1], 'Record low')) for x in c_dict.items()]
     return list(zip(names, nums))
 
+
 def filter_months(c_dict, start, end):
-    m_list = months[_month_num(start) - 1: _month_num(end)]
+    m1 = _month_num(start)
+    m2 = _month_num(end)
+    if m1 > m2:
+        m_list = months[0:m2] + months[m1 - 1:12]
+    else:
+        m_list = months[_month_num(start) - 1: _month_num(end)]
     filtered =  _filter_dict_by_path(c_dict, [m_list])
     return filtered
 
+
+def filter_max_temp(c_dict, max_temp):
+    maxes = get_max_temps(c_dict)
+    matches = list(filter(lambda x : x[1] <= max_temp, maxes))
+    names = list(map(lambda x: x[0], matches))
+    return _filter_dict_by_path(c_dict, [names])
+
+
+def filter_min_temp(c_dict, min_temp):
+    mins = get_min_temps(c_dict)
+    matches = list(filter(lambda x : x[1] >= min_temp, mins))
+    names = list(map(lambda x: x[0], matches))
+    return _filter_dict_by_path(c_dict, [names])
 
 '''
 I want to break up the problem of filtering.
@@ -101,6 +120,7 @@ def _get_matching_fields(c_dict, field_name):
     inner(c_dict)
 
     return values
+
 
 def _month_num(month):
     return months.index(month.lower()) + 1

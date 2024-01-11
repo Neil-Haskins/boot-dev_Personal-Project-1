@@ -96,6 +96,35 @@ class Tests(unittest.TestCase):
                 }
             }
         )
+        self.assertEqual(
+            filters.filter_months(tests_data.test_dict, 'Dec', 'Jan'),
+            {
+                'Vancouver, Canada, North America': {
+                    'Climate': {
+                        'Jan': {
+                            'Record high': 15.3,
+                            'Record low': -17.8
+                        },
+                        'Dec': {
+                            'Record high': 15.0,
+                            'Record low': -17.8,
+                        },
+                    }
+                }, 
+                'Tokyo, Japan, Asia': {
+                    'Climate': {
+                        'Jan': {
+                            'Record high': 22.6,
+                            'Record low': -9.2
+                        },
+                        'Dec': {
+                            'Record high': 24.8,
+                            'Record low': -6.8,
+                        },
+                    }
+                }
+            }
+        )
 
     
 

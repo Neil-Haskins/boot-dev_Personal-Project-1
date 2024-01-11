@@ -37,5 +37,10 @@ Should probably use Python and Tkinter, so as to match what's been done in the p
 2. Set up GUI
 
 
+### Examples:
+- I want a list of all cities where the coldest it gets from June to August is 10 degrees.
+- I want a list of all cities where the hottest it gets from June to August is 35 degrees.
+- I want a list of all cities where between June and August the hottest it gets is AT LEAST 35 degrees.
 
+- For a given city, I want the three months with the highest minimum temperature.
 
