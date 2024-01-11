@@ -40,12 +40,15 @@ I want to break up the problem of filtering.
 2. Make filters in a DRY fashion
 '''
 def _filter_dict_by_path(c_dict, path):
-    # this checks if all of path appears, but not if it appears without gaps
+    # This checks if all of path appears, but not if it appears without gaps
+    # TODO: a list as an element in the path list shall look for any of the contained elements on the same level
     if len(path) == 0:
         return {}
     new_dict = {}
     for k, v in c_dict.items():
-        if k == path[0] and len(path) == 1:
+        if isinstance(path[0], list):
+            pass
+        elif k == path[0] and len(path) == 1:
             new_dict[k] = v
         elif isinstance(v, dict):
             if k == path[0]:

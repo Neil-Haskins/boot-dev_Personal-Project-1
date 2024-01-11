@@ -23,7 +23,7 @@ def _city_dict(city):
     sub_items = []
     for (val, lst) in city:
         if len(lst) == 1:
-            if is_number(val):
+            if _is_number(val):
                 val = float(val)
             dict[lst[0]] = val
         else:

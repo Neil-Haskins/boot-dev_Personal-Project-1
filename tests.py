@@ -2,6 +2,7 @@ import unittest
 import parser
 import packer
 import filters
+import tests_data
 
 class Tests(unittest.TestCase):
     def test_filter(self):
@@ -9,6 +10,31 @@ class Tests(unittest.TestCase):
             True,
             True
         )
+
+    def test_filter_dict_by_path(self):
+        path = ['Jan', 'Record high']
+        c_dict = tests_data.test_dict
+        result = filters._filter_dict_by_path(c_dict, path)
+        self.assertEqual(
+            result,
+            {
+                'Vancouver, Canada, North America': {
+                    'Climate': {
+                        'Jan': {
+                            'Record high': 15.3
+                        }
+                    }
+                }, 
+                'Tokyo, Japan, Asia': {
+                    'Climate': {
+                        'Jan': {
+                            'Record high': 22.6
+                        }
+                    }
+                }
+            }
+        )
+
     
 
 
