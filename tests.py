@@ -12,11 +12,9 @@ class Tests(unittest.TestCase):
         )
 
     def test_filter_dict_by_path(self):
-        path = ['Jan', 'Record high']
         c_dict = tests_data.test_dict
-        result = filters._filter_dict_by_path(c_dict, path)
         self.assertEqual(
-            result,
+            filters._filter_dict_by_path(c_dict, ['Jan', 'Record high']),
             {
                 'Vancouver, Canada, North America': {
                     'Climate': {
@@ -29,6 +27,31 @@ class Tests(unittest.TestCase):
                     'Climate': {
                         'Jan': {
                             'Record high': 22.6
+                        }
+                    }
+                }
+            }
+        )
+        self.assertEqual(
+            filters._filter_dict_by_path(c_dict, [['Jan', 'Mar'], 'Record high']),
+            {
+                'Vancouver, Canada, North America': {
+                    'Climate': {
+                        'Jan': {
+                            'Record high': 15.3
+                        },
+                        'Mar': {
+                            'Record high': 20.0
+                        }
+                    }
+                }, 
+                'Tokyo, Japan, Asia': {
+                    'Climate': {
+                        'Jan': {
+                            'Record high': 22.6
+                        },
+                        'Mar': {
+                            'Record high': 25.3
                         }
                     }
                 }

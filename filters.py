@@ -45,18 +45,27 @@ def _filter_dict_by_path(c_dict, path):
     if len(path) == 0:
         return {}
     new_dict = {}
-    for k, v in c_dict.items():
-        if isinstance(path[0], list):
-            pass
-        elif k == path[0] and len(path) == 1:
+
+    def run_check(k, v, path_item):
+        if k == path_item and len(path) == 1:
             new_dict[k] = v
         elif isinstance(v, dict):
-            if k == path[0]:
-                val = _filter_dict_by_path(v, path[1:])
+            if k == path_item:
+                return _filter_dict_by_path(v, path[1:])
             else:
-                val = _filter_dict_by_path(v, path)
-            if val:
-                new_dict[k] = val
+                return _filter_dict_by_path(v, path)
+
+    for k, v in c_dict.items():
+        value = None
+        if isinstance(path[0], list):
+            for path_item in path[0]:
+                result = run_check(k, v, path_item)
+                if result:
+                    value = result
+        else:
+            value = run_check(k, v, path[0])
+        if value:
+            new_dict[k] = value
     return new_dict
 
 
