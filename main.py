@@ -2,7 +2,7 @@ import parser
 import packer
 import filters
 
-from dev import nicely_print_list
+from dev import nicely_print_list, nicely_print_dict, nicely_print
         
 
 def main():
@@ -10,12 +10,6 @@ def main():
     cities_dict = packer.pack(rows)
 
     # print(cities_dict)
-
-    # max_temps = filters.get_max_temps(cities_dict)
-    # nicely_print_list(max_temps)
-    
-    # min_temps = filters.get_min_temps(cities_dict)
-    # nicely_print_list(min_temps)
 
 
 

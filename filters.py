@@ -30,8 +30,8 @@ def get_min_temps(c_dict):
 
 def filter_months(c_dict, start, end):
     m_list = months[_month_num(start) - 1: _month_num(end)]
-    # filtered = 
-    # I need a filter that can grab any of multiple values
+    filtered =  _filter_dict_by_path(c_dict, [m_list])
+    return filtered
 
 
 '''
@@ -47,10 +47,10 @@ def _filter_dict_by_path(c_dict, path):
     new_dict = {}
 
     def run_check(k, v, path_item):
-        if k == path_item and len(path) == 1:
+        if len(path) == 1 and k.lower() == path_item.lower():
             new_dict[k] = v
         elif isinstance(v, dict):
-            if k == path_item:
+            if k.lower() == path_item.lower():
                 return _filter_dict_by_path(v, path[1:])
             else:
                 return _filter_dict_by_path(v, path)
