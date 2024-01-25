@@ -124,3 +124,10 @@ def _get_matching_fields(c_dict, field_name):
 
 def _month_num(month):
     return months.index(month.lower()) + 1
+
+
+
+filters_dict = {
+    "Highest temperature": filter_max_temp,
+    "Lowest temperature": filter_min_temp,
+}
