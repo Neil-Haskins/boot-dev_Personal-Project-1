@@ -10,8 +10,7 @@ def main():
     rows = parser.parse_file(open('data/example_1.csv', 'r'))
     cities_dict = packer.pack(rows)
 
-    root = gui.window(800, 600)
-    root.mainloop()
+    root = gui.Window(800, 600, cities_dict)
 
 
 
