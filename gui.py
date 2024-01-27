@@ -42,13 +42,21 @@ class Window:
         self.__filter_by.trace('w', lambda *args : self.__filter_value_label_text.set(f'{self.__filter_by.get()} = '))
 
         self.__filter_value = StringVar()
-        self.__filter_value_entry = ttk.Entry(self.__main_frame, textvariable=self.__filter_value, validate='all', validatecommand=(self.validate_entry, '%P'))
+        self.__filter_value_entry = ttk.Entry(self.__main_frame, textvariable=self.__filter_value)
         self.__filter_value_entry.grid(column=2, row=4, sticky=(W))
+
+        self.__filter_error_text = StringVar()
+        self.__filter_error_text.set('')
+        self.__filter_error_label = ttk.Label(self.__main_frame, textvariable=self.__filter_error_text)
+        self.__filter_error_label.grid(column=3, row=4, sticky=(W, E))
+
+        self.__filter_value.trace('w', lambda *args : self.__filter_error_text.set(''))
 
         self.__find_button = ttk.Button(self.__main_frame, text='Find cities', command=self.on_click_find)
         self.__find_button.grid(column=2, row=5)
 
-
+        self.__results = Text(self.__main_frame)
+        self.__results.grid(column=1, row=6, columnspan=4, sticky=(W, E, S))
 
         for child in self.__main_frame.winfo_children(): 
             child.grid_configure(padx=5, pady=3)
@@ -56,28 +64,31 @@ class Window:
         self.__root.mainloop()
 
     def on_click_find(self):
+        try:
+            filter_value = float(self.__filter_value.get())
+        except ValueError as e:
+            self.__filter_error_text.set('Value must be a number')
+            return
         filter_name = self.__filter_by.get()
-        value = float(self.__filter_value.get())
         use_filter = filters.filters_dict[filter_name]
         start_month = self.__start_month.get()
         end_month = self.__end_month.get()
         months_dict = filters.filter_months(self._cities_dict, start_month, end_month)
-        result = use_filter(months_dict, value)
-        nicely_print(result)
-    
+        result = use_filter(months_dict, filter_value)
+        self.print_result(result, start_month, end_month, filter_name, filter_value)
+
+    def print_result(self, result_dict, start, end, filter_name, filter_value):
+        title = f'Cities with a {filter_name} of {filter_value} from {start} to {end}:\n\n'
+        self.__results.insert('end', title)
+        for k,v in result_dict.items():
+            self.__results.insert('end', f'{k}\n')
+        self.__results.insert('end', '\n\n')
+
     def validate_entry(self, P):
         return str.isdigit(P) or P == ""
 
 
-
-# NOTE: https://tkdocs.com/widgets/index.html
-# Ability to add multiple filters
-# Dropdown to choose a filter
-# TODO: Filter on arbitrary parameters
-# Stringvar(s) to enter value(s) for selected filter
-# Get Results button
-# Text display of results
-
+# Needs field to display errors
 class FilterSet:
     def __init__(self, parent, row, label_text, options_set):
         label = ttk.Label(parent, text=label_text)
@@ -100,3 +111,15 @@ class FilterSet:
 
     def trace(self, *args):
         return self._select_options.trace(*args)
+
+
+
+
+
+# NOTE: https://tkdocs.com/widgets/index.html
+# Ability to add multiple filters
+# Dropdown to choose a filter
+# TODO: Filter on arbitrary parameters
+# Stringvar(s) to enter value(s) for selected filter
+# Get Results button
+# Text display of results
