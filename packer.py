@@ -13,7 +13,7 @@ def _assemble_cities_dict(rows):
     dicts = list(map(_city_dict, tuples))
     main_dict = {}
     for city in dicts:
-        title = f"{city['City']}, {city['Country']}, {city['Region']}"
+        title = f"{city['City']}, {city['Province/State/Etc.']}, {city['Country']}"
         main_dict[title] = city
     return main_dict
 

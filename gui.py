@@ -2,13 +2,6 @@ from tkinter import *
 from tkinter import ttk
 import filters
 
-from dev import nicely_print
-
-
-# on change dropdown value
-def change_dropdown(string_var):
-    print( string_var.get() )
-
 class Window:
     def __init__(self, width, height, cities_dict, colors=None):
         if colors is None:
